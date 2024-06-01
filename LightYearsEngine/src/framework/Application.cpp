@@ -1,5 +1,7 @@
 #include "framework/Application.h"
+#include "framework/Core.h"
 #include <iostream>
+#include <stdio.h>
 
 namespace ly
 {
@@ -25,21 +27,44 @@ namespace ly
 					mWindow.close();
 				}
 			}
-
+			float frameDeltaTime = mTickClock.restart().asSeconds();
 			accumulatedTime += mTickClock.restart().asSeconds();
 			while (accumulatedTime > targetDeltaTime)
 			{
 				accumulatedTime -= targetDeltaTime;
-				Tick(targetDeltaTime);
-				Render();
+				TickInternal(targetDeltaTime);
+				RenderInternal();
 			}
+			log("ticking at %f", 1.f / frameDeltaTime);
 		}
+	}
+
+	void Application::TickInternal(float deltaTime)
+	{
+		Tick(deltaTime);
+	}
+
+	void Application::RenderInternal()
+	{
+		mWindow.clear();
+		
+		Render();
+
+		mWindow.display();
+	}
+
+	void Application::Render()
+	{
+		sf::CircleShape rect{ 50 };
+		rect.setFillColor(sf::Color::Green);
+		rect.setOrigin(50, 50);
+		rect.setPosition(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
+
+		mWindow.draw(rect);
+
 	}
 	void Application::Tick(float deltaTime)
 	{
-		std::cout << "ticking at " << 1.f / deltaTime << std::endl;
-	}
-	void Application::Render()
-	{
+
 	}
 }
