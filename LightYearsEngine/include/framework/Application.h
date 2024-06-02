@@ -1,13 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "framework/Core.h"
+
 namespace ly
 {
 	class World;
 	class Application
 	{
 	public:
-		Application();
+		Application(unsigned int windowWidth, unsigned int windowheight, const std::string& title, sf::Uint32 style);
 		void Run();
 
 		template<typename WorldType>

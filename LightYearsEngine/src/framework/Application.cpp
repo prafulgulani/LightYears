@@ -7,13 +7,12 @@
 
 namespace ly
 {
-	Application::Application()
-		: mWindow{ sf::VideoMode(800, 800), "Light Years" },
-		mTargetFramerate{60.f},
+	Application::Application(unsigned int windowWidth, unsigned int windowheight, const std::string& title, sf::Uint32 style)
+		: mWindow{ sf::VideoMode(windowWidth, windowheight), title, style },
+		mTargetFramerate{ 120.f },
 		mTickClock{},
 		currentWorld(nullptr)
 	{
-		
 	}
 	void Application::Run()
 	{
@@ -62,12 +61,16 @@ namespace ly
 
 	void Application::Render()
 	{
-		sf::CircleShape rect{ 50 };
+		/*sf::CircleShape rect{ 50 };
 		rect.setFillColor(sf::Color::Green);
 		rect.setOrigin(50, 50);
 		rect.setPosition(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
 
-		mWindow.draw(rect);
+		mWindow.draw(rect);*/
+		if (currentWorld)
+		{
+			currentWorld->Render(mWindow);
+		}
 
 	}
 	void Application::Tick(float deltaTime)
