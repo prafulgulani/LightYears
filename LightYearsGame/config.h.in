@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+<<<<<<< HEAD
 std::string GetResouceDir()
 {
 #ifdef NDEBUG //release build
@@ -8,4 +9,14 @@ std::string GetResouceDir()
 #else
 	return "@RESOURCE_SRC_DIR@/";
 #endif
+=======
+std::string GetResourceDir()
+{
+#ifdef NDEBUG //RELEASE BUILD
+	return "@RESOURCE_FOLDER_NAME@/";
+#else //debug build
+	return "@RESOURCE_SRC_DIR@/";
+#endif //  NDEBUG //RELEASE BUILD
+
+>>>>>>> restart
 }
