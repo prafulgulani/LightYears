@@ -49,15 +49,11 @@ namespace ly
 	{
 		mTexture = AssetManager::Get().LoadTexture(texturePath);
 		if (!mTexture) return;
-<<<<<<< HEAD
 
-		mSprite.setTexture(*mTexture);
 
-=======
 		
 		mSprite.setTexture(*mTexture);
 
->>>>>>> restart
 		int textureWidth = mTexture->getSize().x;
 		int textureHeight = mTexture->getSize().y;
 		mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });

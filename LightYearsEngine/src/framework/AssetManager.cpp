@@ -8,11 +8,8 @@ namespace ly
 	{
 		if (!assetManager)
 		{
-<<<<<<< HEAD
-			assetManager = unique<AssetManager>{new AssetManager};
-=======
+
 			assetManager = unique<AssetManager>{ new AssetManager };
->>>>>>> restart
 		}
 
 		return *assetManager;
