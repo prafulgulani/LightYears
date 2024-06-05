@@ -37,18 +37,16 @@ namespace ly
 
 	void Actor::BeginPlay()
 	{
-		log("actor beign play");
 	}
 
 	void Actor::Tick(float deltaTime)
 	{
-		log("actor ticking");
-
 	}
 	void Actor::SetTexture(const std::string& texturePath)
 	{
-		mTexture.loadFromFile(texturePath);
-		mSprite.setTexture(mTexture);
+		mTexture = AssetManager::Get().LoadTexture(texturePath);
+		if (!mTexture) return;
+		mSprite.setTexture(*mTexture);
 
 		int textureWidth = mTexture->getSize().x;
 		int textureHeight = mTexture->getSize().y;
