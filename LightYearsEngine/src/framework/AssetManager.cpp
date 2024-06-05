@@ -8,7 +8,6 @@ namespace ly
 	{
 		if (!assetManager)
 		{
-
 			assetManager = unique<AssetManager>{ new AssetManager };
 		}
 

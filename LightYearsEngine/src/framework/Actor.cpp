@@ -47,12 +47,8 @@ namespace ly
 	}
 	void Actor::SetTexture(const std::string& texturePath)
 	{
-		mTexture = AssetManager::Get().LoadTexture(texturePath);
-		if (!mTexture) return;
-
-
-		
-		mSprite.setTexture(*mTexture);
+		mTexture.loadFromFile(texturePath);
+		mSprite.setTexture(mTexture);
 
 		int textureWidth = mTexture->getSize().x;
 		int textureHeight = mTexture->getSize().y;
