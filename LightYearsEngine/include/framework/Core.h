@@ -25,7 +25,7 @@ using Map = std::map<keyType, valType, Pr>;
 
 // if order isn't important use dictionary else use map
 template<typename keyType, typename valType, typename hasher = std::hash<keyType>>
-using Dictionary = std::map<keyType, valType, hasher>;
+using Dictionary = std::unordered_map<keyType, valType, hasher>;
 
 // a macro
 #define log(M, ...) printf(M "\n", ##__VA_ARGS__)

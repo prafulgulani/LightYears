@@ -9,7 +9,7 @@ namespace ly
 {
 	Application::Application(unsigned int windowWidth, unsigned int windowheight, const std::string& title, sf::Uint32 style)
 		: mWindow{ sf::VideoMode(windowWidth, windowheight), title, style },
-		mTargetFramerate{ 120.f },
+		mTargetFramerate{ 60.f },
 		mTickClock{},
 		currentWorld(nullptr)
 	{
