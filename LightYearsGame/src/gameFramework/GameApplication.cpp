@@ -16,11 +16,8 @@ namespace ly
 		weak<World> newWorld = LoadWorld<World>();
 		newWorld.lock()->SpawnActor<Actor>();
 		actorToDestroy = newWorld.lock()->SpawnActor<Actor>();
-<<<<<<< HEAD
-		actorToDestroy.lock()->SetTexture(GetResouceDir() + "SpaceShooterRedux/PNG/playerShip1_blue.png");
-=======
 		actorToDestroy.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip1_blue.png");
->>>>>>> restart
+
 	    counter = 0;
 	}
 	void GameApplication::Tick(float deltaTime)

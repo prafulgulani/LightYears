@@ -49,8 +49,6 @@ namespace ly
 	{
 		mTexture = AssetManager::Get().LoadTexture(texturePath);
 		if (!mTexture) return;
-
-
 		
 		mSprite.setTexture(*mTexture);
 
