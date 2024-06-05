@@ -17,6 +17,7 @@ namespace ly
 		newWorld.lock()->SpawnActor<Actor>();
 		actorToDestroy = newWorld.lock()->SpawnActor<Actor>();
 		actorToDestroy.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip1_blue.png");
+
 	    counter = 0;
 	}
 	void GameApplication::Tick(float deltaTime)

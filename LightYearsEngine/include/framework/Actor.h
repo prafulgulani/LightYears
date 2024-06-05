@@ -21,6 +21,7 @@ namespace ly
 	private:
 		World* mOwningWorld;
 		bool mHasBeganPlay;
+
 		sf::Sprite mSprite;
 		shared<sf::Texture> mTexture;
 	};
