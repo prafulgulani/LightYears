@@ -10,6 +10,7 @@ namespace ly
 		virtual void Tick(float deltaTime) override;
 		void setVelocity(const sf::Vector2f& newVel);
 		sf::Vector2f getVelocity() const {return mVelocity;}
+		virtual void Shoot();
 	private:
 		sf::Vector2f mVelocity;
 	};
