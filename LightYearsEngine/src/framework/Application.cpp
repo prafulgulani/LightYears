@@ -30,7 +30,6 @@ namespace ly
 					mWindow.close();
 				}
 			}
-			float frameDeltaTime = mTickClock.restart().asSeconds();
 			accumulatedTime += mTickClock.restart().asSeconds();
 			while (accumulatedTime > targetDeltaTime)
 			{
@@ -59,6 +58,10 @@ namespace ly
 		{
 			mCleanCycleClock.restart();
 			AssetManager::Get().CleanCycle();
+			if (currentWorld)
+			{
+				currentWorld->CleanCycle();
+			}
 		}
 	}
 

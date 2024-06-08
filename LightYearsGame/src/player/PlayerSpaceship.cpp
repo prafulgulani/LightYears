@@ -9,7 +9,7 @@ namespace ly
 		: Spaceship{owningWorld, path},
 		mMoveInput{},
 		mSpeed{200.f},
-		mShooter{ new BulletShooter{this, 0.3f} }
+		mShooter{ new BulletShooter{this, 0.2f} }
 
 	{
 	}
@@ -46,8 +46,9 @@ namespace ly
 		{
 			mMoveInput.x = 1.f;
 		}
-		ClampInputOnEdge();
+
 		NormalizeInput();
+		ClampInputOnEdge();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
@@ -66,19 +67,19 @@ namespace ly
 		sf::Vector2f actorLocation = GetActorLocation();
 		if (actorLocation.x < 0 && mMoveInput.x == -1)
 		{
-			mMoveInput.x == 0.f;
+			mMoveInput.x = 0.f;
 		}
 		if (actorLocation.x > GetWindowSize().x && mMoveInput.x == 1.f)
 		{
-			mMoveInput.x == 0.f;
+			mMoveInput.x = 0.f;
 		}
 		if (actorLocation.y < 0 && mMoveInput.y == -1)
 		{
-			mMoveInput.y == 0.f;
+			mMoveInput.y = 0.f;
 		}
 		if (actorLocation.y > GetWindowSize().y && mMoveInput.y == 1.f)
 		{
-			mMoveInput.y == 0.f;
+			mMoveInput.y = 0.f;
 		}
 	}
 
