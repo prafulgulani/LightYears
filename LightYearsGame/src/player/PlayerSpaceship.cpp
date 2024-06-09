@@ -59,7 +59,7 @@ namespace ly
 	void PlayerSpaceship::NormalizeInput()
 	{
 		Normalize(mMoveInput);
-		log("move input is now %f, %f", mMoveInput.x, mMoveInput.y);
+		//log("move input is now %f, %f", mMoveInput.x, mMoveInput.y);
 	}
 
 	void PlayerSpaceship::ClampInputOnEdge()
