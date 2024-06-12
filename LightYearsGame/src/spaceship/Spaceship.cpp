@@ -33,13 +33,28 @@ namespace ly
 		SetEnablePhysics(true);
 
 		mHealthComp.onHealthChanged.BindAction(GetWeakRef(), &Spaceship::OnHealthChanged);
-	
-		mHealthComp.onHealthChanged.Broadcast(11, 89, 100);
+		mHealthComp.onTakenDamage.BindAction(GetWeakRef(), &Spaceship::OnTakenDamage);
+		mHealthComp.onHealthEmpty.BindAction(GetWeakRef(), &Spaceship::Blow);
+		//mHealthComp.onHealthChanged.Broadcast(11, 89, 100);
+	}
+
+	void Spaceship::ApplyDamage(float amt)
+	{
+		mHealthComp.ChangeHealth(-amt);
 	}
 
 	void Spaceship::OnHealthChanged(float amt, float health, float maxHealth)
 	{
-		log("health changed");
+
+	}
+
+	void Spaceship::OnTakenDamage(float amt, float health, float maxHealth)
+	{
+	}
+
+	void Spaceship::Blow()
+	{
+		Destroy();
 	}
 	
 }

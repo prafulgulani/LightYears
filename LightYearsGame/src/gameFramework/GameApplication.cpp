@@ -31,12 +31,12 @@ namespace ly
 	void GameApplication::Tick(float deltaTime)
 	{
 		counter += deltaTime;
-		if (counter > 10.f)
+		/*if (counter > 10.f)
 		{
 			if (!testPlayerSpaceship.expired())
 			{
 				testPlayerSpaceship.lock()->Destroy();
 			}
-		}
+		}*/
 	}
 }

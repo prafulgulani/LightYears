@@ -15,7 +15,8 @@ namespace ly
 		mSprite{},
 		mTexture{},
 		mPhysicsBody{nullptr},
-		mPhysicsEnabled{false}
+		mPhysicsEnabled{false},
+		mTeamId{GetNeutralTeamId()}
 	{
 		SetTexture(texturePath);
 	}
@@ -166,6 +167,20 @@ namespace ly
 	{
 		UnInitializePhysics();
 		Object::Destroy();
+	}
+
+	bool Actor::IsOtherHostile(Actor* other) const
+	{
+		if (GetTeamId() == GetNeutralTeamId() || other->GetTeamId() == GetNeutralTeamId())
+		{
+			return false;
+		}
+		return GetTeamId() != other->GetTeamId();
+	}
+
+	void Actor::ApplyDamage(float amt)
+	{
+
 	}
 
 	void Actor::InitializePhysics()

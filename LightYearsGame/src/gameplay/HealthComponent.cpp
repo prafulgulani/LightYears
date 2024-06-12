@@ -31,23 +31,24 @@ namespace ly
 			{
 				HealthEmpty();
 			}
-			else
+			/*else
 			{
 				HealthRegen(amt);
-			}
+			}*/
+			onHealthChanged.Broadcast(amt, mHealth, mMaxHealth);
 
 		}
 	}
 	void HealthComponent::TakenDamage(float amt)
 	{
-		log("took damge");
+		onTakenDamage.Broadcast(amt, mHealth, mMaxHealth);
 	}
 	void HealthComponent::HealthEmpty()
 	{
-		log("dead");
+		onHealthEmpty.Broadcast();
 	}
-	void HealthComponent::HealthRegen(float amt)
+	/*void HealthComponent::HealthRegen(float amt)
 	{
 		log("health regen");
-	}
+	}*/
 }

@@ -31,6 +31,7 @@ using Dictionary = std::unordered_map<keyType, valType, hasher>;
 template<typename T>
 using Set = std::unordered_set<T>;
 
+using uint8 = unsigned char;
 
 // a macro
 #define log(M, ...) printf(M "\n", ##__VA_ARGS__)
