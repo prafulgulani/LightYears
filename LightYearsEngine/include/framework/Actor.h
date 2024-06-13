@@ -27,12 +27,14 @@ namespace ly
 		sf::Vector2f GetActorLocation() const;
 		float GetActorRotation() const;
 		sf::Vector2f GetActorForwardDirection() const;
+		sf::Vector2f GetActorLeftDirection() const;
 		sf::Vector2f GetActorRightDirection() const;
 		sf::FloatRect GetActorGloabalBounds() const;
 
 		sf::Vector2u GetWindowSize() const;
 
-		World* GetWorld() const { return mOwningWorld; }
+		const World* GetWorld() const { return mOwningWorld; }
+		World* GetWorld() { return mOwningWorld; }
 
 		bool IsActorOutOfWindowBounds() const;
 
@@ -40,14 +42,16 @@ namespace ly
 		virtual void OnActorBeginOverlap(Actor* other);
 		virtual void OnActorEndOverlap(Actor* other);
 		virtual void Destroy() override;
+
 		static uint8 GetNeutralTeamId() { return neutralTeamId; }
-
-
 		void SetTeamId(uint8 teamId) { mTeamId = teamId; }
 		uint8 GetTeamId() const { return mTeamId; }
 		bool IsOtherHostile(Actor* other) const;
 
 		virtual void ApplyDamage(float amt);
+
+		sf::Sprite& GetSprite() { return mSprite; }
+		const sf::Sprite& GetSprite() const { return mSprite; }
 	private:
 		void InitializePhysics();
 		void UnInitializePhysics();

@@ -103,6 +103,10 @@ namespace ly
 	{
 		return RotationToVector(GetActorRotation() + 90.f);
 	}
+	sf::Vector2f Actor::GetActorLeftDirection() const
+	{
+		return RotationToVector(GetActorRotation() - 90.f);
+	}
 	sf::FloatRect Actor::GetActorGloabalBounds() const
 	{
 		return mSprite.getGlobalBounds();
@@ -155,12 +159,12 @@ namespace ly
 
 	void Actor::OnActorBeginOverlap(Actor* other)
 	{
-		log("overlap");
+
 	}
 
 	void Actor::OnActorEndOverlap(Actor* other)
 	{
-		log("overlap finished");
+
 	}
 
 	void Actor::Destroy()

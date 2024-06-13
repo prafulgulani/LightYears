@@ -48,7 +48,7 @@ namespace ly
 
 	void Bullet::Move(float deltaTime)
 	{
-		AddActorLocationOffset(GetActorForwardDirection() * mSpeed * deltaTime);
+		AddActorLocationOffset(GetActorLeftDirection() * mSpeed * deltaTime);
 	}
 	
 
