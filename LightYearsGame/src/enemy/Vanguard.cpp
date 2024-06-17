@@ -8,7 +8,7 @@ namespace ly
 		mShooter{new BulletShooter{this}}
 	{
 		setVelocity(velocity);
-		SetActorRotation(90.f);
+		SetActorRotation(180.f);
 	}
 
 	void Vanguard::Tick(float deltaTime)
