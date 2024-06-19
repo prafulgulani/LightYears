@@ -1,5 +1,6 @@
 #pragma once
 #include "framework/World.h"
+#include "framework/TimerManager.h"
 
 namespace ly
 {
@@ -10,8 +11,8 @@ namespace ly
 		GameLevelOne(Application* owningApp);
 	private:
 		virtual void BeginPlay() override;
-		//virtual void Tick(float deltaTime);
 		weak<PlayerSpaceship> testPlayerSpaceship;
 		void TimerCallBack_Test();
+		TimerHandle timerHandle_test;
 	};
 }
