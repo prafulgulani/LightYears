@@ -37,7 +37,7 @@ namespace ly
 		{
 			if (iter->second.unique())
 			{
-				log("cleaning texture: %s", iter->first.c_str());
+				//log("cleaning texture: %s", iter->first.c_str());
 				iter = mLoadedTextureMap.erase(iter);
 			}
 			else

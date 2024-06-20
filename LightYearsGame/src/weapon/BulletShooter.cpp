@@ -25,7 +25,7 @@ namespace ly
 	void BulletShooter::ShootImpl()
 	{
 		mCooldownClock.restart();
-		log("shooting");
+		//log("shooting");
 		weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(), "SpaceShooterRedux/PNG/Lasers/laserBlue01.png");
 		newBullet.lock()->SetActorLocation(GetOwner()->GetActorLocation());
 		newBullet.lock()->SetActorRotation(GetOwner()->GetActorRotation());

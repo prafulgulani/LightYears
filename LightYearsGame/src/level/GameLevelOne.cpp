@@ -4,7 +4,9 @@
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
 #include "player/PlayerSpaceship.h"
+#include "gameplay/GameStage.h"
 #include "framework/TimerManager.h"
+
 namespace ly
 {
 	GameLevelOne::GameLevelOne(Application* owningApp)
@@ -28,5 +30,9 @@ namespace ly
 	{
 		log("callback called");
 		TimerManager::Get().ClearTimer(timerHandle_test);
+	}
+	void GameLevelOne::InitGameStages()
+	{
+		AddStage(shared<GameStage>{new GameStage{ this }});
 	}
 }

@@ -23,7 +23,7 @@ namespace ly
 
 	Actor::~Actor()
 	{
-		log("actor destroyed");
+		//log("actor destroyed");
 	}
 
 	void Actor::BeginPlayInternal()
