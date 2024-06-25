@@ -124,7 +124,7 @@ namespace ly
 		++mCurrentStageIndex;
 		if (mCurrentStageIndex >= 0 && mCurrentStageIndex < mGameStages.size())
 		{
-			mGameStages[mCurrentStageIndex]->OnStageFinished.BindAction(GetWeakRef(), &World::NextGameStage);
+			mGameStages[mCurrentStageIndex]->onStageFinished.BindAction(GetWeakRef(), &World::NextGameStage);
 			mGameStages[mCurrentStageIndex]->StartStage();
 		}
 		else

@@ -35,6 +35,7 @@ namespace ly
 
 		List<shared<Actor>> mActors;
 		List<shared<Actor>> mPendingActors;
+
 		List<shared<GameStage>> mGameStages;
 		int mCurrentStageIndex;
 		virtual void InitGameStages();

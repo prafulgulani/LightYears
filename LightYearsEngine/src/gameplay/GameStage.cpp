@@ -4,23 +4,23 @@
 namespace ly
 {
 	GameStage::GameStage(World* world)
-		: mWorld{world}
+		: mWorld{world},
+		mStageFinished{false}
 	{
 	}
 	
 	void GameStage::StartStage()
 	{
-		log("stage start");
+		log("stage started");
 	}
 	
 	void GameStage::TickStage(float deltaTime)
 	{
-		log("stage ticking");
 	}
 	
-	void GameStage::FinishedStage()
+	void GameStage::FinishStage()
 	{
-		OnStageFinished.Broadcast();
+		onStageFinished.Broadcast();
 		mStageFinished = true;
 		StageFinished();
 	}

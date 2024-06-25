@@ -13,11 +13,11 @@ namespace ly
 		const World* GetWorld() const { return mWorld; }
 		World* GetWorld() { return mWorld; }
 		
-		Delegate<> OnStageFinished;
+		Delegate<> onStageFinished;
 
 		virtual void StartStage();
 		virtual void TickStage(float deltaTime);
-		void FinishedStage();
+		void FinishStage();
 		bool IsStageFinished() const { return mStageFinished; }
 	
 	private:
