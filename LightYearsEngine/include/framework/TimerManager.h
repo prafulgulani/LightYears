@@ -13,7 +13,7 @@ namespace ly
 	private:
 		unsigned int mTimerKey;
 		static unsigned int timerKeyCounter;
-		static unsigned int GetNextTimerKey() { return timerKeyCounter; }
+		static unsigned int GetNextTimerKey() { return ++timerKeyCounter; }
 	};
 
 	struct TimerHandleHashFunction

@@ -26,7 +26,7 @@ namespace ly
 		int mRowsToSpawn;
 		int mRowSpawnCount;
 
-		int mVanguardPerRow;
+		int mVanguardsPerRow;
 		int mCurrentRowVanguardCount;
 		
 		virtual void StageFinished() override;

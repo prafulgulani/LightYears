@@ -22,7 +22,7 @@ namespace ly
 		UpdateBlink(deltaTime);
 	}
 
-	void Spaceship::setVelocity(const sf::Vector2f& newVel)
+	void Spaceship::SetVelocity(const sf::Vector2f& newVel)
 	{
 		mVelocity = newVel;
 	}

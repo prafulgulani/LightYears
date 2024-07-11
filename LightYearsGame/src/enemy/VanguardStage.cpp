@@ -1,5 +1,5 @@
-#include "enemy/VanguardStage.h"
 #include "enemy/Vanguard.h"
+#include "enemy/VanguardStage.h"
 
 #include "framework/World.h"
 
@@ -13,9 +13,9 @@ namespace ly
 		mLeftSpawnLoc{0.0f, 0.0f},
 		mRightSpawnLoc{0.0f, 0.0f},
 		mSpawnLoc{0.0f, 0.0f},
-		mRowsToSpawn{4},
+		mRowsToSpawn{2},
 		mRowSpawnCount{0},
-		mVanguardPerRow{3},
+		mVanguardsPerRow{3},
 		mCurrentRowVanguardCount{0}
 	{
 	}
@@ -40,7 +40,7 @@ namespace ly
 		weak<Vanguard> newVanguard = GetWorld()->SpawnActor<Vanguard>();
 		newVanguard.lock()->SetActorLocation(mSpawnLoc);
 		++mCurrentRowVanguardCount;
-		if (mCurrentRowVanguardCount == mVanguardPerRow)
+		if (mCurrentRowVanguardCount == mVanguardsPerRow)
 		{
 			TimerManager::Get().ClearTimer(mSpawnTimerHandle);
 			mSwitchTimerHandle = TimerManager::Get().SetTimer(GetWeakRef(), &VanguardStage::SwitchRow, mSwitchInterval, false);

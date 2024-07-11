@@ -1,11 +1,13 @@
 #include "level/GameLevelOne.h"
 #include "enemy/Vanguard.h"
+#include "enemy/TwinBladeStage.h"
 #include "enemy/VanguardStage.h"
 #include "framework/Actor.h"
 #include "framework/AssetManager.h"
 #include "framework/TimerManager.h"
-#include "gameplay/GameStage.h"
 #include "framework/World.h"
+#include "gameplay/GameStage.h"
+#include "gameplay/WaitStage.h"
 #include "player/PlayerSpaceship.h"
 
 namespace ly
@@ -24,6 +26,9 @@ namespace ly
 
 	void GameLevelOne::InitGameStages()
 	{
+		AddStage(shared<WaitStage>{new WaitStage{ this, 2.f }});
 		AddStage(shared<VanguardStage>{new VanguardStage{ this }});
+		AddStage(shared<WaitStage>{new WaitStage{ this, 5.f }});
+		AddStage(shared<TwinBladeStage>{new TwinBladeStage{ this }});
 	}
 }

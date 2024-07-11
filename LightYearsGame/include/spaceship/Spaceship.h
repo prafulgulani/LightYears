@@ -9,7 +9,7 @@ namespace ly
 	public:
 		Spaceship(World* owningWorld, const std::string& texturePath = "");
 		virtual void Tick(float deltaTime) override;
-		void setVelocity(const sf::Vector2f& newVel);
+		void SetVelocity(const sf::Vector2f& newVel);
 		sf::Vector2f getVelocity() const {return mVelocity;}
 		virtual void Shoot();
 		virtual void BeginPlay() override;

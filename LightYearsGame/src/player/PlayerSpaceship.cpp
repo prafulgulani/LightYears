@@ -9,7 +9,7 @@ namespace ly
 		: Spaceship{owningWorld, path},
 		mMoveInput{},
 		mSpeed{200.f},
-		mShooter{ new BulletShooter{this, 0.1f} }
+		mShooter{ new BulletShooter{this, 0.1f, {0.f, -50.f}} }
 	{
 		SetTeamId(1);
 	}
@@ -84,7 +84,7 @@ namespace ly
 
 	void PlayerSpaceship::ConsumeInput(float deltaTime)
 	{
-		setVelocity(mMoveInput * mSpeed);
+		SetVelocity(mMoveInput * mSpeed);
 		mMoveInput.x = mMoveInput.y = 0.f;
 	}
 	
