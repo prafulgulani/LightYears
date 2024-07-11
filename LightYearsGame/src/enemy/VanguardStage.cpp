@@ -1,5 +1,6 @@
 #include "enemy/Vanguard.h"
 #include "enemy/VanguardStage.h"
+#include "enemy/Hexagon.h"
 
 #include "framework/World.h"
 
@@ -7,7 +8,7 @@ namespace ly
 {
 	VanguardStage::VanguardStage(World* world)
 		: GameStage{world},
-		mSpawnInterval{1.f},
+		mSpawnInterval{1.5f},
 		mSwitchInterval{2.f},
 		mSpawnDistanceToEdge{100.f},
 		mLeftSpawnLoc{0.0f, 0.0f},

@@ -10,7 +10,6 @@ namespace ly
 	{
 		SetVelocity(velocity);
 		SetActorRotation(180.f);
-
 	}
 
 	void TwinBlade::Tick(float deltaTime)
@@ -24,5 +23,4 @@ namespace ly
 		mShooterLeft->Shoot();
 		mShooterRight->Shoot();
 	}
-
 }

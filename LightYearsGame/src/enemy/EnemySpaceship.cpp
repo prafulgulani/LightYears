@@ -7,14 +7,16 @@ namespace ly
 	{
 		SetTeamId(2);
 	}
+
 	void EnemySpaceship::Tick(float deltaTime)
 	{
 		Spaceship::Tick(deltaTime);
-		if (IsActorOutOfWindowBounds(GetActorGloabalBounds().width))
+		if (IsActorOutOfWindowBounds(GetActorGloabalBounds().width * 2.f))
 		{
 			Destroy();
 		}
 	}
+	
 	void EnemySpaceship::OnActorBeginOverlap(Actor* other)
 	{
 		Spaceship::OnActorBeginOverlap(other);
