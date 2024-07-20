@@ -9,7 +9,7 @@ namespace ly
 	UFOStage::UFOStage(World* world)
 		: GameStage{world},
 		mSpawnInterval{4.f},
-		mSpawnAmt{10},
+		mSpawnAmt{1},
 		mCurrentSpawnAmt{0},
 		mUFOSpeed{200.f}
 	{

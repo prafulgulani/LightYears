@@ -11,7 +11,7 @@ namespace ly
 		: Spaceship{owningWorld, path},
 		mMoveInput{},
 		mSpeed{200.f},
-		mShooter{ new FrontalWiper{this, 0.1f, {0.f, -50.f}} }
+		mShooter{ new BulletShooter{this, 0.1f, {0.f, -50.f}} }
 	{
 		SetTeamId(1);
 	}
@@ -28,6 +28,16 @@ namespace ly
 		{
 			mShooter->Shoot();
 		}
+	}
+
+	void PlayerSpaceship::SetShooter(unique<Shooter>&& newShooter)
+	{
+		if (mShooter && typeid(*mShooter.get()) == typeid(*newShooter.get()))
+		{
+			mShooter->IncrementLevel();
+			return;
+		}
+		mShooter = std::move(newShooter);
 	}
 
 	void PlayerSpaceship::HandleInput()
