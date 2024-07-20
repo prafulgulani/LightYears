@@ -4,7 +4,7 @@
 #include "framework/Object.h"
 #include "framework/Application.h"
 #include "gameplay/GameStage.h"
-
+#include "widgets/HUD.h"
 
 namespace ly
 {
@@ -51,6 +51,12 @@ namespace ly
 		}
 
 		Tick(deltaTime);
+
+		if (mHUD && !mHUD->HasInit())
+		{
+			mHUD->NativeInit(mOwningApp->GetWindow());
+
+		}
 	}
 
 	void World::Render(sf::RenderWindow& window)
@@ -59,6 +65,8 @@ namespace ly
 		{
 			actor->Render(window);
 		}
+
+		RenderHUD(window);
 	}
 
 	World::~World()
@@ -91,12 +99,28 @@ namespace ly
 		mGameStages.push_back(newStage);
 	}
 
+	bool World::DispatchEvent(const sf::Event& event)
+	{
+		if (mHUD)
+		{
+			return mHUD->HandleEvent(event);
+		}
+	}
+
 	void World::BeginPlay()
 	{
 	}
 
 	void World::Tick(float deltaTime)
 	{
+	}
+
+	void World::RenderHUD(sf::RenderWindow& window)
+	{
+		if (mHUD)
+		{
+			mHUD->Draw(window);
+		}
 	}
 
 	void World::InitGameStages()
