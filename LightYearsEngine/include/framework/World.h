@@ -21,11 +21,11 @@ namespace ly
 
 		virtual ~World();
 
-		template<typename ActorType, typename... Args>
-		weak<ActorType> SpawnActor(Args... args);
+		template<typename ActorType, typename ...Args>
+		weak<ActorType> SpawnActor(Args ...args);
 
-		template<typename HUDType, typename... Args>
-		weak<HUD> SpawnHUD(Args... srg);
+		template<typename HUDType, typename ...Args>
+		weak<HUDType> SpawnHUD(Args ...args);
 
 		sf::Vector2u GetWindowSize() const;
 		void CleanCycle();
@@ -53,8 +53,8 @@ namespace ly
 		void StartStages();
 	};
 
-	template<typename ActorType, typename... Args>
-	weak<ActorType> World::SpawnActor(Args... args)
+	template<typename ActorType, typename ...Args>
+	weak<ActorType> World::SpawnActor(Args ...args)
 	{
 		shared<ActorType> newActor{ new ActorType(this, args...) };
 		mPendingActors.push_back(newActor);
@@ -62,9 +62,9 @@ namespace ly
 	}
 
 	template<typename HUDType, typename ...Args>
-	inline weak<HUD> World::SpawnHUD(Args ...srg)
+	inline weak<HUDType> World::SpawnHUD(Args ...args)
 	{
-		shared<HUDTyper> newHUD{ new HUDType(args...)};
+		shared<HUDType> newHUD{ new HUDType(args...)};
 		mHUD = newHUD;
 		return newHUD;
 	}
