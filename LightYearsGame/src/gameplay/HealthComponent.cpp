@@ -23,6 +23,8 @@ namespace ly
 		{
 			mHealth = mMaxHealth;
 		}
+		
+		onHealthChanged.Broadcast(amt, mHealth, mMaxHealth);
 
 		if (amt < 0)
 		{
@@ -31,24 +33,18 @@ namespace ly
 			{
 				HealthEmpty();
 			}
-			/*else
-			{
-				HealthRegen(amt);
-			}*/
-			onHealthChanged.Broadcast(amt, mHealth, mMaxHealth);
 
 		}
 	}
+	
 	void HealthComponent::TakenDamage(float amt)
 	{
 		onTakenDamage.Broadcast(amt, mHealth, mMaxHealth);
 	}
+	
 	void HealthComponent::HealthEmpty()
 	{
 		onHealthEmpty.Broadcast();
 	}
-	/*void HealthComponent::HealthRegen(float amt)
-	{
-		log("health regen");
-	}*/
+	
 }
