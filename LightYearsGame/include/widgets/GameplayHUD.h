@@ -1,7 +1,7 @@
 #pragma once
 #include "widgets/HUD.h"
 #include "widgets/TextWidget.h"
-#include "widgets/ValueGuage.h"
+#include "widgets/ValueGauge.h"
 
 namespace ly
 {
@@ -21,5 +21,9 @@ namespace ly
 		void PlayerSpaceshipDestroyed(Actor* actor);
 		TextWidget mFramerateText;
 		ValueGuage mPlayerHealthBar;
+		sf::Color mHealthyHealthBarColor;
+		sf::Color mCriticalHealthBarColor;
+		float mCriticalThreshold;
+
 	};
 }

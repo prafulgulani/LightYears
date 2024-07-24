@@ -8,7 +8,10 @@ namespace ly
 {
 	GameplayHUD::GameplayHUD()
 		: mFramerateText{"Framerate: "},
-		mPlayerHealthBar{}
+		mPlayerHealthBar{},
+		mHealthyHealthBarColor{128, 255, 128, 255},
+		mCriticalHealthBarColor{255, 0, 0, 255},
+		mCriticalThreshold{0.3}
 	{
 		mFramerateText.SetTextSize(25);
 		
@@ -40,6 +43,14 @@ namespace ly
 	void GameplayHUD::PlayerHealthUpdated(float amt, float currentHealth, float maxHealth)
 	{
 		mPlayerHealthBar.UpdateValue(currentHealth, maxHealth);
+		if (currentHealth / maxHealth <= mCriticalThreshold)
+		{
+			mPlayerHealthBar.SetForegroundColor(mCriticalHealthBarColor);
+		}
+		else
+		{
+			mPlayerHealthBar.SetForegroundColor(mHealthyHealthBarColor);
+		}
 	}
 
 	void GameplayHUD::RefreshHealthBar()
