@@ -6,7 +6,7 @@ namespace ly
 	class ValueGuage : public Widget
 	{
 	public:
-		ValueGuage(const sf::Vector2f& size = sf::Vector2f{ 300.f, 40.f }, float initialPercent = 0.75f, 
+		ValueGuage(const sf::Vector2f& size = sf::Vector2f{ 250.f, 30.f }, float initialPercent = 0.75f, 
 			const sf::Color& foregroundColor = sf::Color{128, 255, 128, 255},
 			const sf::Color& backgroundColor = sf::Color{ 128, 128, 128, 255 });
 
