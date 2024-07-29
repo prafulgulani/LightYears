@@ -14,6 +14,7 @@ namespace ly
 
 		virtual void Draw(sf::RenderWindow& windowRef) override;
 		virtual void Tick(float deltaTime) override;
+		virtual bool HandleEvent(const sf::Event& event) override;
 
 	private:
 		virtual void Init(const sf::RenderWindow& windowRef) override;

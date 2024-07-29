@@ -40,6 +40,11 @@ namespace ly
 		mFramerateText.SetString(frameRateStr);
 	}
 
+	bool GameplayHUD::HandleEvent(const sf::Event& event)
+	{
+		return HUD::HandleEvent(event);
+	}
+
 	void GameplayHUD::Init(const sf::RenderWindow& windowRef)
 	{
 		auto windowSize = windowRef.getSize();
