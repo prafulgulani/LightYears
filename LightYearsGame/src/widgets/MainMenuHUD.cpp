@@ -1,5 +1,5 @@
 #include "widgets/MainMenuHUD.h"
-
+#include "framework/Core.h"
 namespace ly
 {
 	MainMenuHUD::MainMenuHUD()
@@ -27,10 +27,34 @@ namespace ly
 	void MainMenuHUD::Init(const sf::RenderWindow& windowRef)
 	{
 		sf::Vector2u windowSize = windowRef.getSize();
-		mTitleText.SetWidgetLocation({ windowSize.x/2.f - mTitleText.GetBound().width/2.f, 100.f});
+		//mTitleText.SetWidgetLocation({ windowSize.x/2.f - mTitleText.GetBound().width/2.f, 200.f});
 
-		mStartButton.SetWidgetLocation({ windowSize.x/2.f - mStartButton.GetBound().width/2.f, windowSize.y/2.f});
-		mQuitButton.SetWidgetLocation( mStartButton.GetWidgetLocation() + sf::Vector2f{0.f, 50.f });
+		//mStartButton.SetWidgetLocation({ windowSize.x/2.f - mStartButton.GetBound().width/2.f, windowSize.y/2.f});
+
+		//mQuitButton.SetWidgetLocation( mStartButton.GetWidgetLocation() + sf::Vector2f{0.f, 50.f });
+
+
+		log("Title Text Width: %f", mTitleText.GetBound().width);
+		log("Start Button Width: %f", mStartButton.GetBound().width);
+		log("Quit Button Width: %f", mQuitButton.GetBound().width);
+
+		// Calculate positions
+		float titleX = windowSize.x / 2.f - mTitleText.GetBound().width / 2.f;
+		float titleY = 200.f;
+		float startX = windowSize.x / 2.f - mStartButton.GetBound().width / 2.f;
+		float startY = 300.f;
+		float quitX = startX;
+		float quitY = startY + 50.f;
+
+		// Debug prints for positions
+		log("Title Position: (%f, %f)", titleX, titleY);
+		log("Start Button Position: (%f, %f)", startX, startY);
+		log("Quit Button Position: (%f, %f)", quitX, quitY);
+
+		// Set positions
+		mTitleText.SetWidgetLocation({ titleX, titleY });
+		mStartButton.SetWidgetLocation({ startX, startY });
+		mQuitButton.SetWidgetLocation({ quitX, quitY });
 
 		mStartButton.onButtonClicked.BindAction(GetWeakRef(), &MainMenuHUD::StartButtonClicked);
 		mQuitButton.onButtonClicked.BindAction(GetWeakRef(), &MainMenuHUD::QuitButtonClicked);
