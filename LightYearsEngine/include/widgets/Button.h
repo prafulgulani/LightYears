@@ -17,8 +17,8 @@ namespace ly
 
 	private:
 		virtual void Draw(sf::RenderWindow& windowRef) override;
-		virtual void LocationUpdated(const sf::Vector2f location);
-		virtual void RotationUpdated(float rotation);
+		virtual void LocationUpdated(const sf::Vector2f& location) override;
+		virtual void RotationUpdated(float rotation) override;
 		void CenterText();
 
 		shared<sf::Texture> mButtonTexture;

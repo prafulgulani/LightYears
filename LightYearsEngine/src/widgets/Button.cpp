@@ -84,7 +84,7 @@ namespace ly
 		windowRef.draw(mButtonText);
 	}
 	
-	void Button::LocationUpdated(const sf::Vector2f location)
+	void Button::LocationUpdated(const sf::Vector2f& location)
 	{
 		mButtonSprite.setPosition(location);
 		CenterText();

@@ -53,7 +53,6 @@ namespace ly
 
 		sf::Vector2f spawnVelocity = spawnLocToCenter * mUFOSpeed;
 
-
 		weak<UFO> newUFO = GetWorld()->SpawnActor<UFO>(spawnVelocity);
 		newUFO.lock()->SetActorLocation(spawnLoc);
 
