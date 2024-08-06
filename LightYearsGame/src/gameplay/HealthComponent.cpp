@@ -36,6 +36,12 @@ namespace ly
 
 		}
 	}
+
+	void HealthComponent::SetInitialHealth(float health, float maxHealth)
+	{
+		mHealth = health;
+		mMaxHealth = maxHealth;
+	}
 	
 	void HealthComponent::TakenDamage(float amt)
 	{
