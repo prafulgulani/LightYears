@@ -134,7 +134,7 @@ namespace ly
 
 	void World::AllGameStageFinished()
 	{
-		log("all stage finished");
+		
 	}
 
 	void World::NextGameStage()

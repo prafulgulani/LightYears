@@ -3,6 +3,7 @@
 #include "widgets/TextWidget.h"
 #include "widgets/ValueGauge.h"
 #include "widgets/ImageWidget.h"
+#include "widgets/Button.h"
 
 namespace ly
 {
@@ -16,6 +17,10 @@ namespace ly
 		virtual void Tick(float deltaTime) override;
 		virtual bool HandleEvent(const sf::Event& event) override;
 
+		void GameFinished(bool playerWon);
+		Delegate<> onRestartButtonClicked;
+		Delegate<> onQuitButtonClicked;
+
 	private:
 		virtual void Init(const sf::RenderWindow& windowRef) override;
 		void RefreshHealthBar();
@@ -24,6 +29,9 @@ namespace ly
 		void PlayerLifeCountUpdated(int amt);
 		void PlayerScoreUpdated(int newScore);
 		void PlayerSpaceshipDestroyed(Actor* actor);
+		void RestartButtonClicked();
+		void QuitButtonClicked();
+
 		TextWidget mFramerateText;
 		
 		ValueGuage mPlayerHealthBar;
@@ -38,5 +46,12 @@ namespace ly
 		sf::Color mCriticalHealthBarColor;
 		float mCriticalThreshold;
 		float mWidgetSpacing;
+
+		TextWidget mWinLoseText;
+		TextWidget mFinalScoreText;
+		Button mRestartButton;
+		Button mQuitButton;
+
+		sf::Vector2u mWindowSize;
 	};
 }

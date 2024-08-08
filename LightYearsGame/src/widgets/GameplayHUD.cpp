@@ -7,30 +7,47 @@
 namespace ly
 {
 	GameplayHUD::GameplayHUD()
-		: mFramerateText{"Framerate: "},
+		: mFramerateText{ "Framerate: " },
 		mPlayerHealthBar{},
 		mPlayerLifeIcon{ "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png" },
-		mPlayerLifeText{""},
+		mPlayerLifeText{ "" },
 		mPlayerScoreIcon{ "SpaceShooterRedux/PNG/Power-ups/star_gold.png" },
-		mPlayerScoreText{""},
-		mHealthyHealthBarColor{128, 255, 128, 255},
-		mCriticalHealthBarColor{255, 0, 0, 255},
-		mCriticalThreshold{0.3},
-		mWidgetSpacing{10.f}
+		mPlayerScoreText{ "" },
+		mHealthyHealthBarColor{ 128, 255, 128, 255 },
+		mCriticalHealthBarColor{ 255, 0, 0, 255 },
+		mCriticalThreshold{ 0.3 },
+		mWidgetSpacing{ 10.f },
+		mWinLoseText{ "" },
+		mFinalScoreText{ "" },
+		mRestartButton{"Restart"},
+		mQuitButton{"Quit"},
+		mWindowSize{}
 	{
 		mFramerateText.SetTextSize(25);
 		mPlayerLifeText.SetTextSize(25);
 		mPlayerScoreText.SetTextSize(25);
+
+		mWinLoseText.SetVisibility(false);
+		mFinalScoreText.SetVisibility(false);
+		mRestartButton.SetVisibility(false);
+		mQuitButton.SetVisibility(false);
 	}
 	
 	void GameplayHUD::Draw(sf::RenderWindow& windowRef)
 	{
+		mWindowSize = windowRef.getSize();
+		
 		mFramerateText.NativeDraw(windowRef);
 		mPlayerHealthBar.NativeDraw(windowRef);
 		mPlayerLifeIcon.NativeDraw(windowRef);
 		mPlayerLifeText.NativeDraw(windowRef);
 		mPlayerScoreIcon.NativeDraw(windowRef);
 		mPlayerScoreText.NativeDraw(windowRef);
+
+		mWinLoseText.NativeDraw(windowRef);
+		mFinalScoreText.NativeDraw(windowRef);
+		mRestartButton.NativeDraw(windowRef);
+		mQuitButton.NativeDraw(windowRef);
 	}
 
 	void GameplayHUD::Tick(float deltaTime)
@@ -42,12 +59,15 @@ namespace ly
 
 	bool GameplayHUD::HandleEvent(const sf::Event& event)
 	{
+		if (mRestartButton.HandleEvent(event)) return true;
+		if (mQuitButton.HandleEvent(event)) return true;
 		return HUD::HandleEvent(event);
 	}
 
 	void GameplayHUD::Init(const sf::RenderWindow& windowRef)
 	{
 		auto windowSize = windowRef.getSize();
+		mWindowSize = windowSize;
 		mPlayerHealthBar.SetWidgetLocation(sf::Vector2f{0.f, windowSize.y-50.f});
 
 		sf::Vector2f nextWidgetPos = mPlayerHealthBar.GetWidgetLocation();
@@ -66,7 +86,19 @@ namespace ly
 
 		RefreshHealthBar();
 		ConnectPlayerStatus();
-		//mPlayerHealthBar.UpdateValue(100.f, 100.f);
+		
+		mWinLoseText.SetTextSize(40);
+		mWinLoseText.SetWidgetLocation({ windowSize.x / 2.f - mWinLoseText.GetBound().width / 2.f, 100.f });
+		
+		//mFinalScoreText.SetString("Score: " + std::to_string(100));
+		mFinalScoreText.SetTextSize(40);
+		mFinalScoreText.SetWidgetLocation({ windowSize.x / 2.f - mFinalScoreText.GetBound().width / 2.f, 200.f });
+		
+		mRestartButton.SetWidgetLocation({ windowSize.x / 2.f - mRestartButton.GetBound().width / 2.f, windowSize.y / 2.f });
+		mQuitButton.SetWidgetLocation(mRestartButton.GetWidgetLocation() + sf::Vector2f{ 0.f, 50.f });
+
+		mRestartButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::RestartButtonClicked);
+		mQuitButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::QuitButtonClicked);
 	}
 
 	void GameplayHUD::PlayerHealthUpdated(float amt, float currentHealth, float maxHealth)
@@ -124,4 +156,39 @@ namespace ly
 	{
 		RefreshHealthBar();
 	}
+
+	void GameplayHUD::RestartButtonClicked()
+	{
+		onRestartButtonClicked.Broadcast();
+	}
+
+	void GameplayHUD::QuitButtonClicked()
+	{
+		onQuitButtonClicked.Broadcast();
+	}
+
+	void GameplayHUD::GameFinished(bool playerWon)
+	{
+		mWinLoseText.SetVisibility(true);
+		mFinalScoreText.SetVisibility(true);
+		mRestartButton.SetVisibility(true);
+		mQuitButton.SetVisibility(true);
+
+		int score = PlayerManager::Get().GetPlayer()->GetScore();
+		mFinalScoreText.SetString("Score " + std::to_string(score));
+		mFinalScoreText.SetTextSize(40);
+
+		if (playerWon)
+		{
+			mWinLoseText.SetString("You Win");
+		}
+		else
+		{
+			mWinLoseText.SetString("You Lose");
+		}
+		mWinLoseText.SetWidgetLocation({ mWindowSize.x / 2.f - mWinLoseText.GetBound().width / 2.f, 100.f });
+		mFinalScoreText.SetWidgetLocation({ mWindowSize.x / 2.f - mFinalScoreText.GetBound().width / 2.f, 200.f });
+
+	}
+
 }

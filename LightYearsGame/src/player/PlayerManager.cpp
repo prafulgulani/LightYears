@@ -36,4 +36,9 @@ namespace ly
 
 		return *playerManager;
 	}
+
+	void PlayerManager::Reset()
+	{
+		mPlayers.clear();
+	}
 }
