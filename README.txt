@@ -1,0 +1,1 @@
+to build, make a build folder and in it, go to cmd line and type cmake -S .. -B .
